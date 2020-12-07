@@ -1,0 +1,37 @@
+PocketCrypto
+
+Minimum Prototype
+
+SBC:
+	Pi Zero
+		https://buyzero.de/collections/boards-kits/products/pi-zero?variant=28699342866
+		https://www.berrybase.de/detail/index/sArticle/4222
+		https://buyzero.de/collections/boards-kits/products/raspberry-pi-zero-v1-3
+	Pi Zero Kit
+		https://buyzero.de/collections/boards-kits/products/pi-zero-essentials-kit
+	Pi Zero W
+		https://www.conrad.de/de/p/raspberry-pi-zero-w-512-mb-1-x-1-0-ghz-raspberry-1693283.html
+		https://buyzero.de/collections/boards-kits/products/raspberry-pi-zero-w?variant=6094320599067
+		https://buyzero.de/collections/boards-kits/products/pi-zero-w-mit-buchsenleiste-bestuckt
+		https://buyzero.de/collections/boards-kits/products/pi-zero-w-mit-u-fl-buchse-bestuckt?variant=12623709110374
+Termal Printer:
+	GOOJPRT QR204
+		https://www.amazon.de/dp/B07N8XTT7G/
+Camera Module:
+	a-cam2-noir
+		https://buyzero.de/collections/shields-module/products/raspberry-pi-kameramodul-v2-noir
+Camera Cable:
+	a-zero-camcable-short
+		https://buyzero.de/collections/raspberry-kabel-und-adapter/products/raspberry-pi-kamera-pi-zero-adapter-kabel-kurz
+PowerBlock:
+	PowerBlockling
+		https://thepihut.com/products/powerblockling-raspberry-pi-power-button
+	PowerBlock
+		https://thepihut.com/products/powerblock-raspberry-pi-power-switch
+MicroUSB Adapter:
+	Slim Converter
+		https://buyzero.de/collections/raspberry-kabel-und-adapter/products/usb-auf-microusb-otg-converter-shim
+USB-Hub:
+	4-Port bus-powered
+		https://buyzero.de/collections/raspberry-kabel-und-adapter/products/logilink-usb-2-0-hub-4-port-smile-schwarz
+		
