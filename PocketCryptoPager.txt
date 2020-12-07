@@ -1,0 +1,155 @@
+PocketCryptoPager
+	"PocketCrypto as Pager"
+
+
+
+Summary:
+	Using
+	-	PocketCrypto as airgapped crypto device
+	-	a analog CB radio transciever as a common off-the-shelf transciever 
+	allow for a flexible two-ray, local messaging system that is:
+		-	end-to-end encrypted
+		-	anonymous and
+		-	only allows for localization and deanonymization at transmission
+
+
+
+Reasons:
+	1.	Centralized Single-Vendor/Single-Provider messaging services are per law required to integrate "lawful interception" & Govware to spy on users.
+			Regardless of legitimacy and rationale, these are utterly invasive and inacceptable per concept.
+	2.	Even Decentralized, [IP-bound] messaging services/solutions that allow to encrypt classic communications suffer from the same issues.
+			Goverments make it nearly impossible if not illegal to obtain anonymous means of communications.
+				i.e. Germany banned anonymous SIM Cards in 07/2017 [https://news.ycombinator.com/item?id=11540689]
+			Running Communication Servers without Govware-Backdoor is a felony in some juristinctions based off user count
+			Internet Backbones are subject to legal and illegal surveillance across the globe.
+	3.	CB Radio, despite being dated, is widely unregulated - aside from the transcievers being approved designs.
+			Even if ever banned, there are millions of devices in circulations, and DIYing a transmitter is trivial.
+			Also even low-clost SDR Transcievers [i.e. YARD Stick One or HackRF] could be used.
+			Even low-cost Recievers [i.e. RTL-SDR] would allow one-way recieval of messages.
+	4.	AFSK is a trivial way to modulate/demodulate data on voice communications, such as analog radio.
+			A simple program and a soundcard is all that is needed.
+	5.	A Raspberry Pi Zero is fast enough to perform public/private crypto like RSA-4096.
+	6.	It is vital to have off-grid communications [see 1-2]
+			True Decentralization requires Users to Own Infrastructure
+	7.	A cheap and simple appliance is needed that requires the least possible amount of "tech-literacy"
+	8.	Create a modern take on the SY-5000 & Enigma.
+	9.	Rights need to be exercised, or they will be revoked without any chance of meaningful resistance.
+
+
+
+AFSK-Modulation:
+	Calling-ID:
+		Using Selcall [https://en.wikipedia.org/wiki/Selcall] tones,
+			the Short Key ID of the recipent*s [i.e. 0xA234567F] is being broadcasted with an 3/4 parity applied + final parity applied
+				100ms:	400Hz tone
+				20ms tones for each signal: -A- -2- -3- *6* -4- -5- -6- *5* -7- -F- *2* #C#
+					-X-	regular symbol
+					*X*	parity
+					#X#	final parity
+				40ms:	400Hz tone
+				20ms tones for each signal: -A- -2- -3- *6* -4- -5- -6- *5* -7- -F- *2* #C#
+					-X-	regular symbol
+					*X*	parity
+					#X#	final parity
+				20ms:	400Hz tone
+		Alternatively:
+			The Long Key ID: [i.e. 1234 5678 A234 567F]
+				or
+			Fingerprint [ i.e. AAAA BBBB CCCC DDDD EEEE FFFF 1234 5678 A234 567F] 
+			can be used to call up a unit:
+	Call:
+		Using the same tones, a message is being transfered at 20ms per tone.
+			The message itself is GnuPG encrypted with the Public Key belonging to the ID used to call.
+			Base16hex is being used to encode/decode & map it to the appropriate tones.
+			A 3/4 parity is being used.
+		If the message is being repeatedly transmitted, a 40ms 400Hz tone is being used.
+		If the message [or a repeat transmission] ends with a 80ms 400Hz tone.
+
+
+
+Message:
+	The message contains the following:
+		Header: 					[ASCII formatted]
+		REQIRED		TX_KEY_ID		ASCII-TEXT		which is also used to check the validity of the signature of the message
+		OPTIONAL	TX_KEY_FP		ASCII-TEXT		Fingerprint of the Key of the sender - (optional)
+		OPTIONAL	RX_KEY_ID		ASCII-TEXT		designated recipent*s of the message - should be identical to the used Pubkey to encrypt & Adress the recipent*s
+		OPTIONAL	RX_KEY_FP		ASCII-TEXT		Fingerprint of the Key of the recipent*s - (optional)
+		OPTIONAL	MSG_ID			HEX(64)			A freely designateable 64bit counter.
+													Per default, it just counts the messages up between the two parties, starting with 0
+													MSG_ID can help to detect fraudulent messages using a stolen public key.
+														In this case, the system should regard these as "SPAM"/"COUNTERFEILT"
+													NOTE: Since MSG_ID can be reset by the transmitting party at any time, it is not tamper-proof.
+		OPTIONAL	MSG_TIME		HEX(64)			Unix-Timestamp of the Message being created.
+		OPTIONAL	MSG_PART_ID		HEX(64)			If the message had to be fragmented into multiple parts, it'll count them up.
+													starting from 0 (unfragmented) or 1 (1st fragment)
+													It must also designate the number of fragments
+													i.e.: "0" "1/2" & "2/2"
+													Default (No MSG_PART_ID): "0"
+													It is recommended to use the least pssible number of fragments
+		OPTIONAL	MSG_TXT_ENC		ASCII-TEXT		Info about the text encoding
+													Default (no MSG_TXT_ENC specified) ASCII
+													Recommended if needed: Unicode
+		REQIRED		MSG_TXT_SIZE	HEX(64)			Size of the encrypted text message in bits
+													It is recommended to make the smallest possible message
+													Sizes above 2953 bytes - message overhead are disrecommeded as to not break compactibility with QR-Codes
+														Sources: https://youtu.be/ExwqNreocpg?t=55 & https://stackoverflow.com/a/11065499
+													This will guarantee valid output that can at least be read regardless of media.
+		OPTIONAL	MSG_TXT_TYPE	ASCII-TEXT		Type of message: TEXT or FILE
+													Default (No MSG_TXT_TYPE): TEXT
+		OPTIONAL	MSG_SUBJECT		ASCII-TEXT		Subject of the message [or name of FILE that is being transfered]
+													REQUIRED if MSG_TXT_TYPE is FILE
+		Body:						[formatted as per MSG_TXT_ENC]
+		REQIRED		MSG_BODY						Body of the Message
+		Footer:						[ASCII formatted]
+		REQIRED		MSG_SIGNATURE	ASCII-TEXT		Signature of the Message [Allowing for Verification of Integrity]
+													Messages are always signed with the Private Key of the Sender!
+		OPTIONAL	MSG_CHK_SHA512	ASCII-TEXT		Checksum of the Message - SHA-512
+		OPTIONAL	MSG_CHK_MD5		ASCII-TEXT		Checksum of the Message - MD5
+
+
+
+Hardware:
+	To make decentralized [re]production as cheap and easy as possible, the system uses the following components:
+		CB PTT Radio
+			It is highly recommended to use a portable, CEPT-compliant 40-Channel 27MHz radio.
+				However, since the PocketCrypto & PocketCryptoPager are agnostic to the used transciever, you're free to use whatever you can.
+				Use of a SDR transciever like the "YARD Stick One" or "HackRF" can be implemented, but is not focus of this project
+					Volunteers are happily invited to implenent this.
+				Use of a regulatorily compliant transciever appliance is recommended for legal reasons. 
+		Raspberry Pi Zero v1.3 [RPi0]
+			In theory, any Linux/Unix system could be used.
+				However, for portability and safety the use of an airgapped & low-power SBC is recommended.
+					Other Options of Interest might be the RPi1A-RPi2B v1.2 as these don't have WiFi/Bluetooth capabilities onboard.
+						The RPi2B v1.2 might be the most powerful option
+							however unless someone is expecting to sent and/or recieve CONSTANTLY A LOT OF MESSAGES, it might not be worth the power draw.
+		Cheap USB Soundcard with MIC & Headphone outputs
+			In theory, any compactible Soundcard could be used - including Audio Codecs integrated into the SBC.
+		Micro-USB - OTG hub with Power Suppy/-Connector
+			Since the RPi0 only has a single Micro-USB - OTG port for data and power, and we need to connect multiple devices, this is necessary
+		USB Keyboard
+			For input to the system
+		HDMI display & matching cable 
+			The RPi0 only has a mini-HDMI as Display output option that works out-of-the-box without spechal drivers or configuration
+				But feel free to use any GPIO-attachable display/touchscreen of your choice.
+					In theory, an eINK screen could be utilized, however ghosting of recent messages might be a security issue.
+		Power Source
+			Whatever you need to power the SBC, keyboard, soundcard and display.
+				Unless you're addicted to RGB, any shitty USB-powerbank/charger with with 2,1A should be more than enough.
+		Boot storage
+			Something where your SBC boots Linux from.
+		Custom Wiring Harness
+			You need to make yourself a wiring harness that:
+			-	connects your soundcard's MIC & SPK outputs to your transciever's SPK & MIC outputs respectively
+			-	allows to actuate the PTT button [i.e. trigger a relay via GPIO]
+			Please look up the manual of your PTT transciever on the required connectors, pinouts, etc. for the harness.
+			For more flexibility and modularity, it is recommended to make a 2-part harness utilizing Rj-12/6p6c "ISDN" connections.
+				MALE: Transciever [Or connection Cable]
+				Female: PocketCryptoPager
+				Pinout:
+					PIN	FUNCTION
+					1	GND			Ground
+					2	PTT_ENABLE	[Pushing the PTT button]
+					3	SPK			[Speaker from the transciever]
+					4	MIC			[MIC of the transciever]
+					5	PRSNT		[Detect if the Harness is plugged in]
+					6	+5V			+5V from the SBC [i.e. LED indicators]
