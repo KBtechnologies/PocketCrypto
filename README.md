@@ -9,6 +9,9 @@ Unlike the Cryptofon [ https://github.com/KBtechnologies/Cryptofon ] it is focus
 
 Whereas the Cryptofon is a full-duplex, symmetric communiation protocol.
 
+
 The closest compareable product might be the Textlite pocketable & encrypted TELEX machines
+
 https://youtu.be/jagiJ9YAqto?t=2277
+
 https://www.cryptomuseum.com/manuf/texttell/index.htm
