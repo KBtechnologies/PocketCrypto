@@ -13,5 +13,6 @@ Whereas the Cryptofon is a full-duplex, symmetric communiation protocol.
 The closest compareable products might be:
 - Textlite PX-1000 pocketable & encrypted TELEX machine [https://youtu.be/jagiJ9YAqto?t=2277 &  https://www.cryptomuseum.com/crypto/philips/px1000/index.htm]
 - Cybiko PDAs (minus the encryption but with a FCC-compliant short-range, two-way radio in the 900MHz band.) [ https://www.youtube.com/watch?v=38VEBOseAzM & https://en.wikipedia.org/wiki/Cybiko ]
+- Armachat Doomstay Communicators (which don't seem to use encryption and use 915 MHz LoRa for chat) [https://www.youtube.com/watch?v=tX8KjV6DEJk]
 - the Pwnagotchi's "PwnMail" [https://pwnagotchi.ai/usage/#pwnmail] (which uses SSH Keys but relies on an internet connection and centralized servers!)
 - Various CryptoPhones (which not only rely on classic GSM infrastructure but also centralized servers making them prone to state-sponsored hacking attacks [see EncroChat] and are usually unverifyable blackboxes that might just be giant honeypots [see ANØM]...)
