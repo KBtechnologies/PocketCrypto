@@ -16,3 +16,4 @@ The closest compareable products might be:
 - Armachat Doomstay Communicators (which don't seem to use encryption and use 915 MHz LoRa for chat) [https://www.youtube.com/watch?v=tX8KjV6DEJk]
 - the Pwnagotchi's "PwnMail" [https://pwnagotchi.ai/usage/#pwnmail] (which uses SSH Keys but relies on an internet connection and centralized servers!)
 - Various CryptoPhones (which not only rely on classic GSM infrastructure but also centralized servers making them prone to state-sponsored hacking attacks [see EncroChat] and are usually unverifyable blackboxes that might just be giant honeypots [see ANØM]...)
+- AOL Communicator [https://twitter.com/Captain2Phones/status/1459258274637918210?s=20] (which was a Pager that connected to AOL messenger - but without a single-vendor/single-provider service that has 0 encryption whatsoever)...
