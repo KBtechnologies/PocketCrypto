@@ -21,7 +21,7 @@ The closest compareable products might be:
   - [see https://pwnagotchi.ai/usage/#pwnmail] 
 - Various CryptoPhones (which not only rely on classic GSM infrastructure but also centralized servers making them prone to state-sponsored hacking attacks
   - [see EncroChat https://www.youtube.com/watch?v=ZssXrW4Umgw ]
--   and are usually unverifyable blackboxes that might just be giant honeypots
+    and are usually unverifyable blackboxes that might just be giant honeypots
   - [see ANØM https://www.youtube.com/watch?v=qq9wnMXvgOc ]...)
 - AOL Communicator (which was a Pager that connected to AOL messenger - but without a single-vendor/single-provider service that has 0 encryption whatsoever)...
   - [see https://twitter.com/Captain2Phones/status/1459258274637918210 & https://www.youtube.com/watch?v=zgJsAyLcB34]
