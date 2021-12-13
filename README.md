@@ -23,3 +23,5 @@ The closest compareable products might be:
   - [see EncroChat https://www.youtube.com/watch?v=ZssXrW4Umgw  & ANØM https://www.youtube.com/watch?v=qq9wnMXvgOc ]...)
 - AOL Communicator (which was a Pager that connected to AOL messenger - but without a single-vendor/single-provider service that has 0 encryption whatsoever)...
   - [see https://twitter.com/Captain2Phones/status/1459258274637918210 & https://www.youtube.com/watch?v=zgJsAyLcB34]
+- eCityruf [https://de.wikipedia.org/wiki/Cityruf] and various other Pagers utilizing POCSAG [https://de.wikipedia.org/wiki/POCSAG] for (unencrypted!) radio transmission.
+  - Said analog pager systems are being phased out for digital, [weakly] encrypted ones using TETRA as network.
