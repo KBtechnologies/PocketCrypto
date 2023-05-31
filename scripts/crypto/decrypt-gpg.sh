@@ -5,7 +5,7 @@
 echo	"╔═══════════════════════════════════════════════════════════════════════╗"
 echo	"║ GPG File Decryption Script                                            ║"
 echo	"║ © 2021 Kevin Karhan   -  kevin@karhan.guru                            ║"
-echo	"║ made for PocketCrypto -  https://github.com/KBtechnologies            ║"
+echo	"║ made for PocketCrypto  https://github.com/KBtechnologies/PocketCrypto ║"
 echo 	"║ licensed under GPLv3                                                  ║"
 echo	"╠═══════════════════════════════════════════════════════════════════════╣"
 echo 	"║ USE ON YOUR OWN RISK! THE AUTHOR IS NOT LIABLE FOR ANY DAMAGES!       ║"
