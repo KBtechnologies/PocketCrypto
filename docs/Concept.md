@@ -5,19 +5,21 @@
 ### Core Idea:
 #### Compact Message Encryption/Decryption Appliance
 - Compact and easy to use:
-  - Btter than Enigma in your Pocket"
+  - "Better than Enigma in your Pocket"
   - Hardware Crypto & Key Storage:
     - Designed against Intrusion and Tampering
+- Use of AFSK instead of [POCSAG](https://en.wikipedia.org/wiki/Radio-paging_code_No._1) for more efficient and more flexible use cases.
+  - Support for narrower channels and lower baud rates as well as wider channels and higher baud rates.
 
 ##### Supported Algorithms:
-- One Time Pad 
-- RSA-8192 [OpenPGP]
-- AES-256
+- [One Time Pad](https://en.wikipedia.org/wiki/One-time_pad)
+- [RSA](https://en.wikipedia.org/wiki/RSA_(cryptosystem))-8192 [OpenPGP]
+- [AES](Advanced_Encryption_Standard)-256
 
 ##### Pubkey Exchange:
-- Printing & Scanning [QR-Code]
+- Printing & Scanning [[QR-Code]](https://en.wikipedia.org/wiki/QR_code)
   - Screen - Verification 
-- FSK-modulated audio
+- [AFSK](https://en.wikipedia.org/wiki/Frequency-shift_keying#Audio_frequency-shift_keying)-modulated audio
 
 ##### Message Exchange:
 - Printing & Scanning [QR-Code]
@@ -25,9 +27,9 @@
 - FSK-modulated audio
 
 
-##### Core System:
+### Core System:
 - Compute Module [Coompute Module Slot]
-  - . CM3+ 
+  - CM3+ Lite
 - USB Hub 
   - Connecting Camera, Keyboard & Printer 
 - Keyboard [USB]
